@@ -17,7 +17,7 @@ public class PostService {
     private final PostRepository postRepository;
 
     public List<PostResponseDto> getPosts() {
-        return postRepository.findAll().stream().map(PostResponseDto::new).toList();
+        return postRepository.findAllByOrderByCreatedAtDesc().stream().map(PostResponseDto::new).toList();
     }
     public PostResponseDto createPost(PostRequestDto requestDto) {
         Post post = new Post(requestDto);
