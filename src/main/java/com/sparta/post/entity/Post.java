@@ -11,9 +11,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+// Entity 애노테이션은 해당 클래스가 엔티티임을 나타내고, 데이터베이스와 매핑된다는 것을 알려준다.
 @Getter
 @Setter
 @NoArgsConstructor
+// 매기변수가 없는 기본 생성자를 만들어 준다.
 public class Post extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +50,7 @@ public class Post extends Timestamped {
         this.password = requestDto.getPassword();
     }
 
+    // 게시물 수정
     public void update(PostRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();

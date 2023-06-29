@@ -38,24 +38,24 @@ public class PostController {
     @PostMapping("/post")
     public PostResponseDto createPost(@RequestBody PostRequestDto requestDto) {
         return postService.createPost(requestDto);
-    }  // requestDto 를 통해 게시물을 생성한 결과를 반환합니다.
+    }  // requestDto 를 통해 게시물을 생성한 결과를 반환
 
     // 게시물 수정 요청에 대한 핸들러
     @PutMapping("/post/{id}")
     public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return postService.updatePost(id, requestDto);
-    } // id에 해당하는 게시물을 requestDto의 내용으로 수정한 결과를 반환합니다.
+    } // id에 해당하는 게시물을 requestDto의 내용으로 수정한 결과를 반환
 
     // 게시물 삭제 요청에 대한 핸들러
     @DeleteMapping("/post/{id}")
     public @ResponseBody Map<String, Boolean>
     deletePost(@PathVariable Long id, @RequestBody Map<String, String> password) {
-       // id에 해당하는 게시물을 password 에 해당하는 비밀번호로 삭제한 결과를 반환합니다.
-        // 응답 결과를 JSON 형식으로 반환하도록 지정합니다. ( @RequestBody)
+       // id에 해당하는 게시물을 password 에 해당하는 비밀번호로 삭제한 결과를 반환
+        // 응답 결과를 JSON 형식으로 반환하도록 지정 ( @RequestBody)
         Map<String, Boolean> deleteResponse = new HashMap<>();
-        //  응답 결과를 담을 맵 객체를 생성합니다.
+        //  응답 결과를 담을 맵 객체를 생성
         deleteResponse.put("success", postService.deletePost(id, password.get("password")));
-        // 삭제 결과를 deleteResponse 맵에 "success" 키로 저장합니다.
+        // 삭제 결과를 deleteResponse 맵에 "success" 키로 저장
         return deleteResponse;
 
     }
